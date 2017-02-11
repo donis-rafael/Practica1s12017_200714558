@@ -19,6 +19,8 @@ public class menuInicial extends javax.swing.JFrame {
      */
     nodoColaFichas nodo;
     colaFichas cf = new colaFichas();
+    public tablero tab = new tablero();
+    
     public menuInicial() {
         initComponents();
     }

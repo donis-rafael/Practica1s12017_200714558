@@ -6,52 +6,59 @@
 package usoNODOS;
 
 import NODOS.nodoColaFichas;
+import NODOS.nodoListaFichas;
 
 /**
  *
  * @author Rafael Antonio Morales Donis
  */
 public class colaFichas {
-    nodoColaFichas inicio;
-    
-    public colaFichas(){
-        
+
+    public nodoColaFichas inicio;
+
+    public colaFichas() {
+
     }
-    
-    public void ingresar(nodoColaFichas nuevoNodo){
-        if(inicio == null){
+
+    public void ingresar(nodoColaFichas nuevoNodo) {
+        if (inicio == null) {
             inicio = nuevoNodo;
-            
-        }else{
+
+        } else {
             nodoColaFichas aux = inicio;
             nodoColaFichas aux2 = inicio;
-            
-            while(aux != null){
+
+            while (aux != null) {
                 aux2 = aux;
                 aux = aux.siguiente;
             }
-            
+
             aux = nuevoNodo;
             aux2.siguiente = aux;
             aux.siguiente = null;
         }
     }
-    
-    public void imprime(){
-        if(inicio != null){
+
+    public void imprime() {
+        if (inicio != null) {
             nodoColaFichas aux = inicio;
-            
-            while(aux != null){
+
+            while (aux != null) {
                 System.out.println(aux.getLetra());
                 aux = aux.siguiente;
             }
         }
     }
-    
-    public void eliminar(){//FIFO
-        nodoColaFichas aux = inicio;
-        inicio = inicio.siguiente;
-        aux.siguiente = null;
-        aux = null;
+
+    public String eliminar() {//FIFO
+        if (inicio != null) {
+            nodoColaFichas aux = inicio;
+            inicio = inicio.siguiente;
+            aux.siguiente = null;
+            String a = aux.getLetra() + "," + aux.getPuntos();
+            aux = null;
+            return a;
+        }
+        return null;
     }
 }

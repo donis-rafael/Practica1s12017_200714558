@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author Rafael Antonio Morales Donis
  */
-public class listaDobleJugadores {
+public class listaCircularJugadores {
 
     nodoJugadores inicio;
     nodoJugadores fin;
 
-    public listaDobleJugadores() {
+    public listaCircularJugadores() {
         inicio = fin = null;
     }
 
@@ -27,7 +27,7 @@ public class listaDobleJugadores {
 
         } else if (verSiRepite(nuevoNodo.getId()) == 1) {
             JOptionPane.showMessageDialog(null, "Usuario Ya Existe");
-            
+
         } else {
             fin.siguiente = nuevoNodo;
             fin = nuevoNodo;
@@ -59,5 +59,36 @@ public class listaDobleJugadores {
         }
 
         return 0;
+    }
+
+    public int obtenerListaJugador(String id) {
+        nodoJugadores aux = inicio;
+        while (aux != fin) {
+            if (aux.getId().equals(id)) {
+                return aux.listaFichas.tamano();
+            }
+            aux = aux.siguiente;
+        }
+        if (aux.getId().equals(id)) {
+            return aux.listaFichas.tamano();
+        }
+
+        return 0;
+    }
+
+    public nodoJugadores obtenerJugador(String id) {
+        if (inicio != null) {
+            nodoJugadores aux = inicio;
+            while (aux != fin) {
+                if (aux.getId().equals(id)) {
+                    return aux;
+                }
+                aux = aux.siguiente;
+            }
+            if (aux.getId().equals(id)) {
+                return aux;
+            }
+        }
+        return null;
     }
 }
