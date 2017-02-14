@@ -51,7 +51,21 @@ public class tablero extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    public void llenaColaLetras(char let, int val){
+        nodoFichasCola = new nodoColaFichas(let, val);
+        fichasCola.ingresar(nodoFichasCola);
+    }
+    
+    public void llenaJugadores(String nombre){
+        nodoUsuario = new nodoJugadores(nombre);
+        listaJugadores.ingresar(nodoUsuario);
+    }
+    
+    public void llenaDiccionario(String palabra){
+        nodoPalabra = new nodoPalabras(palabra);
+        listaPalabras.insertar(nodoPalabra);
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -16,9 +16,10 @@ public class nodoJugadores {
     public listaSimpleFichasJugador listaFichas;
     public nodoJugadores siguiente;
     
-    public nodoJugadores(String sobre, listaSimpleFichasJugador lista){
+    public nodoJugadores(String sobre){
         id = sobre;
-        listaFichas = lista;
+        listaFichas = new listaSimpleFichasJugador();
+        listaFichas.ingresar();
     }
     
     public void setId(String sobre){
