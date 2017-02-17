@@ -40,6 +40,15 @@ public class nodoMatriz {
         return Y;
     }
     
+    public void setPuntosDefault(int ptos){
+        this.puntosDefault = ptos;
+        actualizaTotalPuntos();
+    }
+    
+    public int getPuntosDefault(){
+        return puntosDefault;
+    }
+    
     public void setPuntosLetra(int ptosLetra){
         this.puntosLetra = ptosLetra;
         actualizaTotalPuntos();
@@ -58,7 +67,7 @@ public class nodoMatriz {
     }
     
     public void actualizaTotalPuntos(){
-        totalPTOS = puntosDefault + puntosLetra;
+        totalPTOS = puntosDefault * puntosLetra;
     }
     
     public int getTotal(){

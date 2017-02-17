@@ -30,7 +30,7 @@ public class matriz {
                 ultimo.derecha = nuevoNodo;
                 ultimo.derecha.izquierda = ultimo;
                 ultimo = ultimo.derecha;
-                
+
             } else {
                 ultimo = nuevoNodo;
             }
@@ -60,5 +60,27 @@ public class matriz {
         } else {
             return obtieneNodo(x, y, empieza.abajo);
         }
+    }
+
+    public int ponerPuntos(int x, int y, int puntos, int cualPuntos) {
+        nodoMatriz aux = inicio;
+        while (aux != null) {
+            if (aux.getY() == y) {
+                while (aux != null) {
+                    if (aux.getX() == x) {
+                        if(cualPuntos == 1){//puntos default
+                            aux.setPuntosDefault(puntos);
+                        }else{//puntos letra
+                            aux.setPuntosLetra(puntos);
+                        }
+                        return 1;
+                    }
+                    aux = aux.derecha;
+                }
+            }else{
+                aux = aux.abajo;
+            }
+        }
+        return 0;
     }
 }
