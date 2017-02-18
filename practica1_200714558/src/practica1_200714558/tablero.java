@@ -6,6 +6,8 @@
 package practica1_200714558;
 
 import NODOS.*;
+import java.awt.GridLayout;
+import java.awt.Label;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -13,7 +15,10 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import usoNODOS.*;
 
@@ -44,10 +49,12 @@ public class tablero extends javax.swing.JFrame {
     public matriz matrix = new matriz();
     String jugadorTurnando;
     int dimension;
+    JPanel squares[][];
+    Label[][] label;
+    JLabel etiqueta[][];
 
     public tablero() {
         initComponents();
-        formaTablero();
     }
 
     public void formaTablero() {
@@ -170,6 +177,7 @@ public class tablero extends javax.swing.JFrame {
                         listaPalabras.insertar(nodoPalabra);
                     }
                 }
+                listaPalabras.graficar();
                     bufferreader.close();
                 
                 
@@ -179,6 +187,38 @@ public class tablero extends javax.swing.JFrame {
                 Logger.getLogger(tablero.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SAXException ex) {
                 Logger.getLogger(tablero.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void frame() {
+        squares = new JPanel[dimension][dimension];
+        etiqueta = new JLabel[dimension][dimension];
+        this.jInternalFrame1.setLayout(new GridLayout(dimension, dimension));
+
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+
+//                squares[i][j] = new JPanel();
+                squares[i][j] = new JPanel();
+                //etiqueta[i][j] = new JLabel("   " + i + " " + j);
+                etiqueta[i][j] = new JLabel();
+                etiqueta[i][j].setBounds(400 * i, 400 * j, 400, 400);
+                etiqueta[i][j].setName("etiqueta," + i + "," + j);
+
+                if (i % 2 == 0 && j % 2 == 0) {
+                    squares[i][j].setBackground(new java.awt.Color(255, 255, 255));
+                } else if (i % 2 == 0 && j % 2 == 1) {
+                    squares[i][j].setBackground(new java.awt.Color(112, 170, 107));
+                } else if (i % 2 == 1 && j % 2 == 0) {
+                    squares[i][j].setBackground(new java.awt.Color(112, 170, 107));
+                } else if (i % 2 == 1 && j % 2 == 1) {
+                    squares[i][j].setBackground(new java.awt.Color(255, 255, 255));
+                }
+
+                squares[i][j].add(etiqueta[i][j]);
+                this.jInternalFrame1.add(squares[i][j]);
+
             }
         }
     }
