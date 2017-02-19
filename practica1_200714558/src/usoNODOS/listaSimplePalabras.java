@@ -61,7 +61,6 @@ public class listaSimplePalabras {
     public void graficar() {
         File miDir = new File(".");
         try {
-            System.out.println("Directorio actual: " + miDir.getCanonicalPath());
             String dotPath = miDir.getCanonicalPath() + File.separator + "grafo_Diccionario.txt";
             String jpgPath = miDir.getCanonicalPath() + File.separator + "grafo_Diccionario.jpg";
 
@@ -82,7 +81,7 @@ public class listaSimplePalabras {
     void GeneradorDot() {
         nodoPalabras aux = inicio;
         for (int a = 0; a < tamano(); a++) {
-            buffer.append("Nodo").append(a).append("[label=\"").append(aux.getPalabra()).append("\", style=filled, fillcolor=\"#088A08\", shape=doubleoctagon];\n");
+            buffer.append("Nodo").append(a).append("[label=\"").append(aux.getPalabra()).append("\", style=filled, fillcolor=\"#7FB07F\", shape=doubleoctagon];\n");
             aux = aux.siguiente;
         }
         buffer.append("\n");

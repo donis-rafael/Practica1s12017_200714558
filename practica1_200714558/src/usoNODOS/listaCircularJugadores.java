@@ -6,7 +6,6 @@
 package usoNODOS;
 
 import NODOS.nodoJugadores;
-import NODOS.nodoPalabras;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -120,7 +119,6 @@ public class listaCircularJugadores {
     public void graficar() {
         File miDir = new File(".");
         try {
-            System.out.println("Directorio actual: " + miDir.getCanonicalPath());
             String dotPath = miDir.getCanonicalPath() + File.separator + "grafo_Jugadores.txt";
             String jpgPath = miDir.getCanonicalPath() + File.separator + "grafo_Jugadores.jpg";
 
@@ -142,7 +140,7 @@ public class listaCircularJugadores {
         nodoJugadores aux = inicio;
         int tama = tamano();
         for (int a = 0; a < tama ; a++) {
-            buffer.append("Nodo").append(a).append("[label=\"").append(aux.getId()).append("\", style=filled, fillcolor=\"#088A08\", shape=doubleoctagon];\n");
+            buffer.append("Nodo").append(a).append("[label=\"").append(aux.getId()).append("\", style=filled, fillcolor=\"#7FB07F\", shape=doubleoctagon];\n");
             aux = aux.siguiente;
         }
         buffer.append("\n");
@@ -152,7 +150,9 @@ public class listaCircularJugadores {
             buffer.append("{rank=same; Nodo").append(a).append(" Nodo").append(a + 1).append("}\n");
         }
         
+        if(tama != 0){
             buffer.append("Nodo").append(tama).append(" -> Nodo0;\n");
+        }
     }
 
     public synchronized void creararchivo(String dotPath, String toString) {

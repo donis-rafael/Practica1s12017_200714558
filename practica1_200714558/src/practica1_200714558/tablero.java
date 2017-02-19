@@ -177,6 +177,7 @@ public class tablero extends javax.swing.JFrame {
                         listaPalabras.insertar(nodoPalabra);
                     }
                 }
+                matrix.graficar();
                 listaPalabras.graficar();
                     bufferreader.close();
                 
