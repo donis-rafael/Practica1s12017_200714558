@@ -20,12 +20,13 @@ public class menuInicial extends javax.swing.JFrame {
      */
     nodoColaFichas nodo;
     colaFichas cf = new colaFichas();
-    public tablero tab = new tablero();
+    public ingresaJugadores inJ = new ingresaJugadores();
     int bandera;
     
     public menuInicial() {
         initComponents();
         bandera = 0;
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -81,14 +82,14 @@ public class menuInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        tab.formaTablero();
+        inJ.tab.formaTablero();
         bandera = 1;
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         if(bandera == 1){
-            tab.frame();
-            tab.setVisible(true);
+            inJ.tab.frame();
+            inJ.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this,"No Se Ha Leido El Archivo");
         }

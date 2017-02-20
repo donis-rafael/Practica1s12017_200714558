@@ -22,8 +22,6 @@ public class matriz {
     public nodoMatriz inicio, ultimo, nuevoNodo;
     StringBuffer buffer;
     int contador;
-    String XAnterior, XSig, YSig, YAnterior;
-    boolean ini = false, fini = false;
 
     public matriz() {
         inicio = ultimo = null;
@@ -36,17 +34,17 @@ public class matriz {
             inicio = ultimo = nuevoNodo;
 
         } else {
-                nodoMatriz aux = inicio;
+            nodoMatriz aux = inicio;
             if (x > 0) {
                 if (y > 0) {
                     while (aux.abajo != null) {
                         aux = aux.abajo;
                     }
-                    while(aux.derecha != null){
+                    while (aux.derecha != null) {
                         aux = aux.derecha;
                     }
                 } else {
-                    while(aux.derecha != null){
+                    while (aux.derecha != null) {
                         aux = aux.derecha;
                     }
                 }
@@ -60,7 +58,7 @@ public class matriz {
                         aux = aux.abajo;
                     }
                 }
-                aux = ultimo = nuevoNodo;
+                aux.abajo = ultimo = nuevoNodo;
             }
 
             if ((y > 0) && (obtieneNodo(x, (y - 1), inicio) != null)) {
@@ -131,12 +129,11 @@ public class matriz {
             String dotPath = miDir.getCanonicalPath() + File.separator + "grafo_Matriz.txt";
             String jpgPath = miDir.getCanonicalPath() + File.separator + "grafo_Matriz.jpg";
 
-            ini = false;
-            fini = false;
             buffer = new StringBuffer();
             buffer.append("\nDigraph G {\n");
-            buffer.append("tankdir=UD;\n");
-            buffer.append("node[shape=box];\n");
+            buffer.append("rank=min;\n");
+            buffer.append("node[shape=box, label=\"Start\", style=filled, rankdir=UD];\n");
+
 
             GeneradorDot();
 
@@ -152,13 +149,13 @@ public class matriz {
     void GeneradorDot() {
         nodoMatriz aux = inicio;
         nodoMatriz aux2 = inicio;
-        ini = true;
         int x = dimension();
         System.out.println("Dim= " + x);
 
         for (int yy = 0; yy < x; yy++) {
             for (int a = 0; a < x; a++) {
-                buffer.append("Cab").append(a).append(yy).append("[Label=\"").append(aux.getLetra()).append("\", style=filled, rankdir=LR]\n");
+                buffer.append("\"Cab").append(a).append(",").append(yy).append("\"[label=\"").append(" X , Y \n(")
+                        .append(aux.getX()).append(" , ").append(aux.getY()).append(")\", style=filled, fillcolor=\"#A2E7FF\", fontcolor=\"#00445C\", shape=box];\n");
                 aux = aux.derecha;
             }
             aux2 = aux2.abajo;
@@ -167,15 +164,17 @@ public class matriz {
 
         for (int yy = 0; yy < x; yy++) {
             for (int a = 0; a < (x - 1); a++) {
-                buffer.append("Cab").append(a).append(yy).append(" -> Cab").append(a + 1).append(yy).append("\n");
-                buffer.append("Cab").append(a + 1).append(yy).append(" -> Cab").append(a).append(yy).append("\n");
+                buffer.append("\"Cab").append(a).append(",").append(yy).append("\" -> \"Cab").append(a + 1).append(",").append(yy).append("\"[constraint=false];\n");
+                buffer.append("\"Cab").append(a + 1).append(",").append(yy).append("\" -> \"Cab").append(a).append(",").append(yy).append("\"[constraint=false];\n");
+                buffer.append("{rank=same; \"Cab").append(a).append(",").append(yy).append("\" \"Cab").append(a + 1).append(",").append(yy).append("\"}\n");
+                buffer.append("{rank=same; \"Cab").append(a + 1).append(",").append(yy).append("\" \"Cab").append(a).append(",").append(yy).append("\"}\n");
             }
         }
 
-        for (int yy = 0; yy < (x - 1); yy++) {
-            for (int a = 0; a < x; a++) {
-                buffer.append("Cab").append(a).append(yy).append(" -> Cab").append(a).append(yy + 1).append(" [rankdir=UD];\n");
-                buffer.append("Cab").append(a).append(yy + 1).append(" -> Cab").append(a).append(yy).append(" [rankdir=UD];\n");
+        for (int a = 0; a < x; a++) {
+            for (int yy = 0; yy < (x - 1); yy++) {
+                buffer.append("\"Cab").append(a).append(",").append(yy).append("\" -> \"Cab").append(a).append(",").append(yy + 1).append("\"[rankdir=UD];\n");//
+                buffer.append("\"Cab").append(a).append(",").append(yy + 1).append("\" -> \"Cab").append(a).append(",").append(yy).append("\"[rankdir=UD];\n");//;\n");// [rankdir=UD];\n");//
             }
         }
     }

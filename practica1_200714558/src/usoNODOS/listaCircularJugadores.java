@@ -140,18 +140,18 @@ public class listaCircularJugadores {
         nodoJugadores aux = inicio;
         int tama = tamano();
         for (int a = 0; a < tama ; a++) {
-            buffer.append("Nodo").append(a).append("[label=\"").append(aux.getId()).append("\", style=filled, fillcolor=\"#7FB07F\", shape=doubleoctagon];\n");
+            buffer.append("\"Node").append(a).append("\"[label=\"").append(aux.getId()).append("\", style=filled, fillcolor=\"#7FB07F\", shape=doubleoctagon];\n");
             aux = aux.siguiente;
         }
         buffer.append("\n");
 
         for (int a = 0; a < (tama - 1); a++) {
-            buffer.append("Nodo").append(a).append(" -> Nodo").append(a + 1).append(";\n");
-            buffer.append("{rank=same; Nodo").append(a).append(" Nodo").append(a + 1).append("}\n");
+            buffer.append("\"Node").append(a).append("\" -> \"Node").append(a + 1).append("\";\n");
+            buffer.append("{rank=same; \"Node").append(a).append("\" \"Node").append(a + 1).append("\"}\n");
         }
         
         if(tama != 0){
-            buffer.append("Nodo").append(tama).append(" -> Nodo0;\n");
+            buffer.append("\"Node").append(tama).append("\" -> \"Node0\";\n");
         }
     }
 

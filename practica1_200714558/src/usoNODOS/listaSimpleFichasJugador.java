@@ -30,7 +30,7 @@ public class listaSimpleFichasJugador {
     public void ingresar() {
         for (int tam = tamano(); tam < 7; tam++) {
             String a[];
-            a = Practica1_200714558.ini.tab.fichasCola.eliminar().split(",");
+            a = Practica1_200714558.ini.inJ.tab.fichasCola.eliminar().split(",");
             char letra = a[0].charAt(0);
             int ptos = Integer.parseInt(a[1]);
             nuevoNodo = new nodoListaFichas(letra, ptos);
@@ -119,20 +119,20 @@ public class listaSimpleFichasJugador {
 
     void GeneradorDot(String idJugador) {
         nodoListaFichas aux = inicio;
-        buffer.append("NodoA [label=\"").append(idJugador).append("\", style=filled, fillcolor=\"#84B787\", shape=tripleoctagon];\n");
+        buffer.append("\"NodeA\"[label=\"").append(idJugador).append("\", style=filled, fillcolor=\"#84B787\", shape=tripleoctagon];\n");
         
         for (int a = 0; a < tamano(); a++) {
-            buffer.append("Nodo").append(a).append("[label=\"").append(aux.getLetra()).append("\", style=filled, fillcolor=\"#7FB07F\", shape=doubleoctagon];\n");
+            buffer.append("\"Node").append(a).append("\"[label=\"").append(aux.getLetra()).append("\", style=filled, fillcolor=\"#7FB07F\", shape=doubleoctagon];\n");
             aux = aux.siguiente;
         }
         buffer.append("\n");
 
-            buffer.append("NodoA -> Nodo0;\n");
-            buffer.append("{rank=same; NodoA Nodo0}\n");
+            buffer.append("\"NodeA\" -> \"Node0\";\n");
+            buffer.append("{rank=same; \"NodeA\" \"Node0\"}\n");
             
         for (int a = 0; a < (tamano()-1); a++) {
-            buffer.append("Nodo").append(a).append(" -> Nodo").append(a + 1).append(";\n");
-            buffer.append("{rank=same; Nodo").append(a).append(" Nodo").append(a + 1).append("}\n");
+            buffer.append("\"Node").append(a).append("\" -> \"Node").append(a + 1).append("\";\n");
+            buffer.append("{rank=same; \"Node").append(a).append("\" \"Node").append(a + 1).append("\"}\n");
         }
     }
 
