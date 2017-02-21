@@ -111,6 +111,9 @@ public class listaCircularJugadores {
             if((temp == fin) && (temp != inicio)){
                 tam++;
             }
+            if((fin!=null) && (fin == inicio)){
+                tam++;
+            }
             return tam;
         }
         return 0;
@@ -150,8 +153,8 @@ public class listaCircularJugadores {
             buffer.append("{rank=same; \"Node").append(a).append("\" \"Node").append(a + 1).append("\"}\n");
         }
         
-        if(tama != 0){
-            buffer.append("\"Node").append(tama).append("\" -> \"Node0\";\n");
+        if(tama > 1){
+            buffer.append("\"Node").append(tama-1).append("\" -> \"Node0\";\n");
         }
     }
 

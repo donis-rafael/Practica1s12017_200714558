@@ -20,7 +20,7 @@ import practica1_200714558.*;
  */
 public class listaSimpleFichasJugador {
 
-    nodoListaFichas inicio, ultimo, nuevoNodo;
+    public nodoListaFichas inicio, ultimo, nuevoNodo;
     StringBuffer buffer;
 
     public listaSimpleFichasJugador() {

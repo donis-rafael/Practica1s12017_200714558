@@ -5,8 +5,11 @@
  */
 package practica1_200714558;
 
+import NODOS.letras;
+import NODOS.nodoColaFichas;
 import NODOS.nodoJugadores;
 import javax.swing.JOptionPane;
+import usoNODOS.colaFichas;
 import usoNODOS.listaCircularJugadores;
 
 /**
@@ -16,13 +19,16 @@ import usoNODOS.listaCircularJugadores;
 public class ingresaJugadores extends javax.swing.JFrame {
 
     public nodoJugadores nodoUsuario;
-    public listaCircularJugadores listaJugadores = new listaCircularJugadores();
     public tablero tab = new tablero();
+    letras[] letra = new letras[95];
+    boolean bandera = false;
+
     /**
      * Creates new form ingresaJugadores
      */
     public ingresaJugadores() {
         initComponents();
+        llenarLetras();
         this.setLocationRelativeTo(null);
     }
 
@@ -117,12 +123,23 @@ public class ingresaJugadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //nodoUsuario = new nodoJugadores(this.jTextField1.getText());
-        //listaJugadores.ingresar(nodoUsuario);
-        int resp = JOptionPane.showConfirmDialog(null, "Ingresar Otro Jugador", "Alerta!", JOptionPane.YES_NO_OPTION);
-        if(resp == 1){
-            this.setVisible(false);
-            tab.setVisible(true);
+        if (this.jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese Nombre de Jugador");
+        } else {
+            nodoUsuario = new nodoJugadores(this.jTextField1.getText());
+            tab.listaJugadores.ingresar(nodoUsuario);
+            if(bandera == false){
+                tab.jugadorTurnando = jTextField1.getText();
+                bandera=true;
+            }
+            int resp = JOptionPane.showConfirmDialog(null, "Ingresar Otro Jugador", "Alerta!", JOptionPane.YES_NO_OPTION);
+            if (resp == 1) {
+                this.setVisible(false);
+                tab.setVisible(true);
+                tab.listaJugadores.graficar();
+                tab.recorreListaFichasJugadores();
+            }
+            this.jTextField1.setText("");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -159,6 +176,138 @@ public class ingresaJugadores extends javax.swing.JFrame {
                 new ingresaJugadores().setVisible(true);
             }
         });
+    }
+
+    void llenarLetras() {
+        int num = 0;
+        for (int i = 0; i < 12; i++) {
+            letra[num] = new letras('A', 1);
+            num++;
+        }
+
+        for (int i = 0; i < 12; i++) {
+            letra[num] = new letras('E', 1);
+            num++;
+        }
+
+        for (int i = 0; i < 9; i++) {
+            letra[num] = new letras('O', 1);
+            num++;
+        }
+
+        for (int i = 0; i < 6; i++) {
+            letra[num] = new letras('I', 1);
+            num++;
+        }
+
+        for (int i = 0; i < 6; i++) {
+            letra[num] = new letras('S', 1);
+            num++;
+        }
+
+        for (int i = 0; i < 5; i++) {
+            letra[num] = new letras('N', 1);
+            num++;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            letra[num] = new letras('L', 1);
+            num++;
+        }
+
+        for (int i = 0; i < 5; i++) {
+            letra[num] = new letras('R', 1);
+            num++;
+        }
+
+        for (int i = 0; i < 5; i++) {
+            letra[num] = new letras('U', 1);
+            num++;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            letra[num] = new letras('T', 1);
+            num++;
+        }
+
+        for (int i = 0; i < 5; i++) {
+            letra[num] = new letras('D', 2);
+            num++;
+        }
+
+        for (int i = 0; i < 2; i++) {
+            letra[num] = new letras('G', 2);
+            num++;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            letra[num] = new letras('C', 3);
+            num++;
+        }
+
+        for (int i = 0; i < 2; i++) {
+            letra[num] = new letras('B', 3);
+            num++;
+        }
+
+        for (int i = 0; i < 2; i++) {
+            letra[num] = new letras('M', 3);
+            num++;
+        }
+
+        for (int i = 0; i < 2; i++) {
+            letra[num] = new letras('P', 3);
+            num++;
+        }
+
+        for (int i = 0; i < 2; i++) {
+            letra[num] = new letras('H', 4);
+            num++;
+        }
+
+        letra[num] = new letras('F', 4);
+        num++;
+
+        letra[num] = new letras('V', 4);
+        num++;
+
+        letra[num] = new letras('Y', 4);
+        num++;
+
+        letra[num] = new letras('Q', 5);
+        num++;
+
+        letra[num] = new letras('J', 8);
+        num++;
+
+        letra[num] = new letras('Ñ', 8);
+        num++;
+
+        letra[num] = new letras('X', 8);
+        num++;
+
+        letra[num] = new letras('Z', 10);
+        llenarCola();
+    }
+
+    void llenarCola() {
+        int num = (letra.length-1);
+        while (num >= 0) {
+            int numero = (int) (Math.random() * num);
+            tab.llenaColaLetras(letra[numero].getLetra(), letra[numero].getValor());
+            
+            for(int i=0; i<letra.length; i++){
+                if(i==numero){
+                    for(int j=i; j<(letra.length-1); j++){
+                        letra[j] = letra[j+1];
+                    }
+                    letra[letra.length - 1] = null;
+                }
+            }
+            
+            num--;
+        }
+        letra = null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

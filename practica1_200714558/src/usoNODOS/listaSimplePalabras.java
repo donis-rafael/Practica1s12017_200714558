@@ -81,7 +81,7 @@ public class listaSimplePalabras {
     void GeneradorDot() {
         nodoPalabras aux = inicio;
         for (int a = 0; a < tamano(); a++) {
-            buffer.append("\"Node").append(a).append("\"[label=\"").append(aux.getPalabra()).append("\", style=filled, fillcolor=\"#7FB07F\", shape=doubleoctagon];\n");
+            buffer.append("\"Node").append(a).append("\"[label=\"").append(aux.getPalabra()).append("\", style=filled, shape=square];\n");//fillcolor=\"#7FB07F\", shape=square];\n");//doubleoctagon];\n");
             aux = aux.siguiente;
         }
         buffer.append("\n");

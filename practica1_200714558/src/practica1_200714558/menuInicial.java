@@ -90,6 +90,7 @@ public class menuInicial extends javax.swing.JFrame {
         if(bandera == 1){
             inJ.tab.frame();
             inJ.setVisible(true);
+            this.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(this,"No Se Ha Leido El Archivo");
         }

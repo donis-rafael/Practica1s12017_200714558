@@ -150,7 +150,7 @@ public class matriz {
         nodoMatriz aux = inicio;
         nodoMatriz aux2 = inicio;
         int x = dimension();
-        System.out.println("Dim= " + x);
+        //System.out.println("Dim= " + x);
 
         for (int yy = 0; yy < x; yy++) {
             for (int a = 0; a < x; a++) {
