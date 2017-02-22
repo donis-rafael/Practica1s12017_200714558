@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class listaCircularJugadores {
 
-    nodoJugadores inicio;
-    nodoJugadores fin;
+    public nodoJugadores inicio;
+    public nodoJugadores fin;
     StringBuffer buffer;
 
     public listaCircularJugadores() {

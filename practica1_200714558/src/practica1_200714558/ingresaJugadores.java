@@ -137,7 +137,9 @@ public class ingresaJugadores extends javax.swing.JFrame {
                 this.setVisible(false);
                 tab.setVisible(true);
                 tab.listaJugadores.graficar();
+                tab.frame2();
                 tab.recorreListaFichasJugadores();
+                tab.llenarTextArea();
             }
             this.jTextField1.setText("");
         }
